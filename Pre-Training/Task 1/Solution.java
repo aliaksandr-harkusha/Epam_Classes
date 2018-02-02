@@ -17,7 +17,6 @@ public class Solution {
         s.arithAveOf6DigitsNumber(368945); //6. Арифметическое среднее число 6тизначного числа
         s.arithGeoOf6DigitsNumber(368945); //6. Геометрическое среднее число 6тизначного числа
         s.reverse7DigitsNumber(1928374); //7. Реверз 7ми значного числа
-
     }
 
     // 1. Задача №1 - Динозавр - в килограмы
@@ -82,6 +81,7 @@ public class Solution {
         int d3 = (number5Digits /= 10) % 10;
         int d2 = (number5Digits /= 10) % 10;
         int d1 = (number5Digits /= 10) % 10;
+        
         return d1 * d2 * d3 * d4 * d5;
     }
 
@@ -94,6 +94,7 @@ public class Solution {
         int d3 = (number6Digits /= 10) % 10;
         int d2 = (number6Digits /= 10) % 10;
         int d1 = (number6Digits /= 10) % 10;
+        
         return (d1 + d2 + d3 + d4 + d5 + d6) / LENGTH_OF_6_DIGITS_NUMBER;
     }
 
@@ -106,13 +107,15 @@ public class Solution {
         int d3 = (number6Digits /= 10) % 10;
         int d2 = (number6Digits /= 10) % 10;
         int d1 = (number6Digits /= 10) % 10;
+        
         return Math.pow(d1 * d2 * d3 * d4 * d5 * d6, 1.0 / LENGTH_OF_6_DIGITS_NUMBER);
     }
 
     //7. Задача №7 - Реверз 7ми значного числа
     public int reverse7DigitsNumber(int number7Digits) {
-        String intToReverse = Integer.toString(number7Digits);
-        StringBuilder reverser = new StringBuilder(intToReverse).reverse();
+        String intToReverse = Integer.toString(number7Digits); //перевод значения в строку
+        StringBuilder reverser = new StringBuilder(intToReverse).reverse(); //разворот строки
+        
         return Integer.parseInt(reverser.toString());
     }
 }
