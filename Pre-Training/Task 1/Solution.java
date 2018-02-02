@@ -66,12 +66,9 @@ public class Solution {
         int d6 = number6Digits/100000;
         int number = number6Digits%100000;
         int d5 = number/10000;
-        number = number%10000;
-        int d4 = number/1000;
-        number = number%1000;
-        int d3 = number/100;
-        number = number%100;
-        int d2 = number/10;
+        int d4 = (number%=10000)/1000;
+        int d3 = (number%=1000)/100;
+        int d2 = (number%=100)/10;
         int d1 = number6Digits%10;
         int sum = d1+d2+d3+d4+d5+d6;
         double geoSum = Math.log(d1)+Math.log(d2)+Math.log(d3)+Math.log(d4)+Math.log(d5)+Math.log(d6);
