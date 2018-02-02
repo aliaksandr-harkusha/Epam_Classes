@@ -1,0 +1,16 @@
+Принципы программирования
+1) Single Risponsibility Principle
+-> Каждый метод для решения одной простой задачи
+2) Open/Closed Principle
+-> Открыта для доработки, закрыта от взлома. Всегда надо писать так, чтобы потом смогли донастроиться от нашего.
+3) Liskov Substitution Principle
+-> Если есть объект класса Т и есть производная от этого класса С, то если заменить Т классом С, то программа не должна крашнуть
+4) Interface Segregation Principle
+-> Интерфайс должен быть тонким - не сильно раздут
+5) Dependency Inversion Principle
+-> Низкоуровневые классы и высокоуровневые классы не должны зависеть друг от друга
+6) Model-View-Controller MVC
+-> User-Controller-Model-View-User
+
+!!!!Скачать Java deCompilator!!!!
+
