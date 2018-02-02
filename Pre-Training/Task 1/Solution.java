@@ -50,14 +50,14 @@ public class Solution {
         System.out.println("Новая переменная a = " + a + ", новая переменная b = " + b + "\n");
     }
 
-    //4. Задача №4 - 4х-значная возрастаемость/убываемость
+    //4. Задача №4 - 4х-значная возрастаемость?
     public boolean numberIncreaseChecker(int numberToCheck) {
         int d4 = numberToCheck % 10;
         int d3 = (numberToCheck /= 10) % 10;
         int d2 = (numberToCheck /= 10) % 10;
         int d1 = (numberToCheck /= 10) % 10;
 
-        return (d4 < d3 && d3 < d2 && d2 < d1);
+        return (d4 > d3 && d3 > d2 && d2 > d1);
     }
 
     //5. Задача №5 - Сумма цифр пятизначного числа
