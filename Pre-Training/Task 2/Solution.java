@@ -1,4 +1,5 @@
 import com.ibm.icu.text.RuleBasedNumberFormat;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Locale;
@@ -6,18 +7,48 @@ import java.util.Locale;
 
 public class Solution {
 
-    private char[] vowels = {'а', 'е', 'ё', 'и', 'о', 'у', 'э', 'я', 'ы', 'ю'};
-    private String vowelsString = new String(vowels);
-    private char[] consonants = {'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ'};
-    private String consonantsString = new String(consonants);
+    private static int YOUNG_DRAGON_AGE = 200;
+    private static int OLD_DRAGON_AGE = 300;
+    private static int YOUNG_DRAGON_HEADS_GROW_RATE = 3;
+    private static int ADULT_DRAGON_HEADS_GROW_RATE = 2;
+    private static int FIRST_DAY_OF_MONTH;
+    private static int FIRST_MONTH_OF_YEAR;
+    private static int LAST_DAY_OF_MONTH;
+    private static int LAST_MONTH_OF_YEAR;
+    private static String[] TOSTRING1_9ENG = {"", "one", "two", "three", "four", "five", 
+            "six", "seven", "eight", "nine"};
+    private static String[] TOSTRING100ENG = {"", "one hundred", "two hundreds", "three hundreds", 
+            "four hundreds", "five hundreds", "six hundreds", "seven hundreds", "eight hundreds", "nine hundreds"};
+    private static String[] TOSTRING10_19ENG = {"ten", "eleven", "twelve", "thirteen", "fourteen", 
+            "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+    private static String[] TOSTRING20_90ENG = {"", "", "twenty", "thirty", "forty", "fifty", 
+            "sixty", "seventy", "eighty", "ninety"};
+    private static String[] TOSTRING1_9 = {"", "один", "два", "три", "четыре", "пять", 
+            "шесть", "семь", "восемь", "девять"};
+    private static String[] TOSTRING100 = {"", "сто", "двести", "триста", "четыреста", "пятьсот", 
+            "шестьсот", "семьсот", "восемьсот", "девятьсот"};
+    private static String[] TOSTRING10_19 = {"десять", "одиннадцать", "двенадцать", "тринадцать", 
+            "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"};
+    private static String[] TOSTRING20_90 = {"", "", "двадцать", "тридцать", "сорок", "пятьдесят", 
+            "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
+    private static char[] VOWELS = {'а', 'е', 'ё', 'и', 'о', 'у', 'э', 'я', 'ы', 'ю'};
+    private String vowelsString = new String(VOWELS);
+    private static char[] CONSONANTS = {'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 
+            'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ'};
+    private String consonantsString = new String(CONSONANTS);
+
 
     public static void main(String[] args) {
         Solution s = new Solution();
         s.dragonAgeFinder(200);
-        s.vowelOrConsonantCheckerV1('а');
-        s.vowelOrConsonantCheckerV2('в');
-        s.vowelOrConsonantCheckerV3('т');
-        s.vowelOrConsonantCheckerV4('й');
+        s.isVowelCheckerV1('а');
+        s.isConsonantCheckerV1('в');
+        s.isVowelCheckerV2('т');
+        s.isConsonantCheckerV2('й');
+        s.isVowelCheckerV3('а');
+        s.isConsonantCheckerV3('в');
+        s.isVowelCheckerV4('т');
+        s.isConsonantCheckerV4('й');
         s.moodSensor();
         s.tomorrowFinder("18_12_31");
         s.digitToStringConverterRUS();
@@ -27,64 +58,76 @@ public class Solution {
     }
 
     // 1. Дракон
-    public void dragonAgeFinder(int age) {
-        int heads;
-        if (age < 200)
-            heads = (age + 1) * 3;
-        else if (age > 200 && age < 300)
-            heads = 603 + 2*(age-200);
-        else heads = 803 + age - 300;
-
-        System.out.println("У дракона в " + age + " лет: Кол-во голов - " + heads + ", кол-во глаз - " + heads * 2);
+    public int dragonAgeFinder(int dragonAge) {
+        int heads = 3; // Dragon has 3 heads once born
+        if (dragonAge < YOUNG_DRAGON_AGE)
+            heads += dragonAge * YOUNG_DRAGON_HEADS_GROW_RATE; //First 200 years dragon grows 3 heads a year
+        else if (dragonAge > YOUNG_DRAGON_AGE && dragonAge < OLD_DRAGON_AGE)
+            heads += YOUNG_DRAGON_AGE + ADULT_DRAGON_HEADS_GROW_RATE * dragonAge; //Years 200 to 300 dragon grows 2 heads a year
+        else heads += YOUNG_DRAGON_AGE * YOUNG_DRAGON_HEADS_GROW_RATE + //Dragons age above 300 years grow 1 head a year
+                    ADULT_DRAGON_HEADS_GROW_RATE * (OLD_DRAGON_AGE - YOUNG_DRAGON_AGE) +
+                    dragonAge - OLD_DRAGON_AGE;
+        return heads;
     }
 
-    // 2. Гласная или согласная. Версия 1.
-    public void vowelOrConsonantCheckerV1(char letterToCheck) {
-        boolean result = false;
-        for (char c : vowels) {
+    // 2. Гласная? Версия 1.
+    public boolean isVowelCheckerV1(char letterToCheck) {
+        for (char c : VOWELS) {
             if (letterToCheck == c) {
-                System.out.println(letterToCheck + " - гласная");
-                result = true;
+                return true;
             }
         }
-        for (char c : consonants) {
+        return false;
+    }
+
+    // 2. Cогласная? Версия 1.
+    public boolean isConsonantCheckerV1(char letterToCheck) {
+        for (char c : CONSONANTS) {
             if (letterToCheck == c) {
-                System.out.println(letterToCheck + " - согласная");
-                result = true;
+                return true;
             }
         }
-        if (!result) System.out.println("А что вы вообще ввели?");
+        return false;
     }
 
-    // 3. Гласная или согласная. Версия 2.
-    public void vowelOrConsonantCheckerV2(char letterToCheck) {
-        if (vowelsString.indexOf(letterToCheck) >= 0) System.out.println(letterToCheck + " - гласная");
-        else if (consonantsString.indexOf(letterToCheck) >= 0) System.out.println(letterToCheck + " - согласная");
-        else System.out.println("А что вы вообще ввели?");
+    // 2. Гласная? Версия 2.
+    public boolean isVowelCheckerV2(char letterToCheck) {
+        return (vowelsString.indexOf(letterToCheck) >= 0);
     }
 
+    // 2. Cогласная? Версия 2.
+    public boolean isConsonantCheckerV2(char letterToCheck) {
+        return (consonantsString.indexOf(letterToCheck) >= 0);
+    }
 
-    // 4. Гласная или согласная. Версия 3.
-    public void vowelOrConsonantCheckerV3(char letterToCheck) {
+    // 2. Гласная? Версия 3.
+    public boolean isVowelCheckerV3(char letterToCheck) {
         String letterString = "" + letterToCheck;
-        if (vowelsString.contains(letterString)) System.out.println(letterToCheck + " - гласная");
-        else if (consonantsString.contains(letterString)) System.out.println(letterToCheck + " - согласная");
-        else System.out.println("А что вы вообще ввели?");
+        return (vowelsString.contains(letterString));
     }
 
+    // 2. Cогласная? Версия 3.
+    public boolean isConsonantCheckerV3(char letterToCheck) {
+        String letterString = "" + letterToCheck;
+        return (consonantsString.contains(letterString));
+    }
 
     // 5. Гласная или согласная. Версия 4.
-    public void vowelOrConsonantCheckerV4(char letterToCheck) {
-        if (letterToCheck == 'а' || letterToCheck == 'е' || letterToCheck == 'ё' || letterToCheck == 'и' || letterToCheck == 'о' || letterToCheck == 'у' || letterToCheck == 'э' || letterToCheck == 'я' ||
-                letterToCheck == 'ы' || letterToCheck == 'ю')
-            System.out.println(letterToCheck + " - гласная");
-        else if (letterToCheck == 'б' || letterToCheck == 'в' || letterToCheck == 'г' || letterToCheck == 'д' || letterToCheck == 'ж' || letterToCheck == 'з' || letterToCheck == 'й' || letterToCheck == 'к' ||
-                letterToCheck == 'л' || letterToCheck == 'м' || letterToCheck == 'н' || letterToCheck == 'п' || letterToCheck == 'р' || letterToCheck == 'с' || letterToCheck == 'т' || letterToCheck == 'ф' ||
-                letterToCheck == 'х' || letterToCheck == 'ц' || letterToCheck == 'ч' || letterToCheck == 'ш' || letterToCheck == 'щ')
-            System.out.println(letterToCheck + " - согласная");
-        else System.out.println("А что вы вообще ввели?");
+    public boolean isVowelCheckerV4(char letterToCheck) {
+        return (letterToCheck == 'а' || letterToCheck == 'е' || letterToCheck == 'ё' || letterToCheck == 'и' ||
+                letterToCheck == 'о' || letterToCheck == 'у' || letterToCheck == 'э' || letterToCheck == 'я' ||
+                letterToCheck == 'ы' || letterToCheck == 'ю');
     }
 
+    // 2. Cогласная? Версия 4.
+    public boolean isConsonantCheckerV4(char letterToCheck) {
+        return (letterToCheck == 'б' || letterToCheck == 'в' || letterToCheck == 'г' || letterToCheck == 'д' ||
+                letterToCheck == 'ж' || letterToCheck == 'з' || letterToCheck == 'й' || letterToCheck == 'к' ||
+                letterToCheck == 'л' || letterToCheck == 'м' || letterToCheck == 'н' || letterToCheck == 'п' ||
+                letterToCheck == 'р' || letterToCheck == 'с' || letterToCheck == 'т' || letterToCheck == 'ф' ||
+                letterToCheck == 'х' || letterToCheck == 'ц' || letterToCheck == 'ч' || letterToCheck == 'ш' ||
+                letterToCheck == 'щ');
+    }
 
     // 6. Замеритель настроения.
     public void moodSensor() {
@@ -94,7 +137,7 @@ public class Solution {
                 System.out.println("(×_×)");
                 break;
             case 1:
-                System.out.println("╯︵╰,)");
+                System.out.println("(╯︵╰,)");
                 break;
             case 2:
                 System.out.println("(￢_￢)");
@@ -119,21 +162,21 @@ public class Solution {
         int month = Integer.parseInt(parts[1]);
         int day = Integer.parseInt(parts[2]);
 
-        if (month == 12 && day == 31) {
+        if (month == LAST_MONTH_OF_YEAR && day == LAST_DAY_OF_MONTH) { //End of year
             year++;
-            day = 1;
-            month = 1;
-        } else if (day == 31) {
-            day = 1;
+            day = FIRST_DAY_OF_MONTH;
+            month = FIRST_MONTH_OF_YEAR;
+        } else if (day == LAST_MONTH_OF_YEAR) { //End of 31-day month
+            day = FIRST_DAY_OF_MONTH;
             month++;
-        } else if (year % 400 == 0 && month == 2 && day == 28) {
-            day = 1;
+        } else if (month == 4 || month == 6 || month == 9 || month == 11 && day == 30) { //months that have 30 days
+            day = FIRST_DAY_OF_MONTH;
             month++;
-        } else if (year % 4 == 0 && !(year % 100 == 0) && day == 28 && month == 2) {
-            day = 1;
+        } else if (year % 400 == 0 && month == 2 && day == 28) { //February 28 days
+            day = FIRST_DAY_OF_MONTH;
             month++;
-        } else if (month == 4 || month == 6 || month == 9 || month == 11 && day == 30) {
-            day = 1;
+        } else if (year % 4 == 0 && !(year % 100 == 0) && day == 29 && month == 2) { //February 29 days in a leap-year
+            day = FIRST_DAY_OF_MONTH;
             month++;
         }
         System.out.println("Tomorrow is: year " + year + ", month " + month + ", day " + day);
@@ -145,10 +188,6 @@ public class Solution {
         BufferedReader b1Reader = new BufferedReader(new InputStreamReader(System.in));
         String input;
 
-        String[] str1_9 = {"", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"};
-        String[] str100 = {"", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
-        String[] str10_19 = {"десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"};
-        String[] str20_90 = {"", "", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
 
         try {
             while (!((input = b1Reader.readLine()).equals("Выход"))) {
@@ -156,11 +195,13 @@ public class Solution {
                 int hundreds = intDataInput / 100;
                 int tens = intDataInput / 10 % 10;
                 int ones = intDataInput % 10;
-                int below20 = intDataInput % 100;
-                if (below20 < 20 && below20 > 9) {
-                    System.out.println("Число в виде строки: " + str100[hundreds] + " " + str10_19[below20 - 10]);
+                int below20 = intDataInput % 100; //Numbers 10-19 are spelled differently so we need to separate them
+                if (below20 < 20 && below20 > 9) { //10-19 numbers separation
+                    System.out.println("Число в виде строки: " + TOSTRING100[hundreds] + " "
+                            + TOSTRING10_19[below20 - 10]);
                 } else
-                    System.out.println("Число в виде строки: " + str100[hundreds] + " " + str20_90[tens] + " " + str1_9[ones]);
+                    System.out.println("Число в виде строки: " + TOSTRING100[hundreds] + " "
+                            + TOSTRING20_90[tens] + " " + TOSTRING1_9[ones]);
                 System.out.print("Введите число(\"Выход\", чтобы выйти): ");
             }
         } catch (Exception e) {
@@ -177,11 +218,6 @@ public class Solution {
         BufferedReader b2Reader = new BufferedReader(new InputStreamReader(System.in));
         String input;
 
-        String[] str1_9 = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
-        String[] str100 = {"", "one hundred", "two hundreds", "three hundreds", "four hundreds", "five hundreds", "six hundreds", "seven hundreds", "eight hundreds", "nine hundreds"};
-        String[] str10_19 = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
-        String[] str20_90 = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
-
         try {
             while (!(input = b2Reader.readLine()).equals("Exit")) {
                 int intDataInput = Integer.parseInt(input);
@@ -190,9 +226,11 @@ public class Solution {
                 int ones = intDataInput % 10;
                 int below20 = intDataInput % 100;
                 if (below20 < 20 && below20 > 9) {
-                    System.out.println("The number as a string: " + str100[hundreds] + " " + str10_19[below20 - 10]);
+                    System.out.println("The number as a string: " + TOSTRING100ENG[hundreds] + " "
+                            + TOSTRING10_19ENG[below20 - 10]);
                 } else
-                    System.out.println("The number as a string: " + str100[hundreds] + " " + str20_90[tens] + " " + str1_9[ones]);
+                    System.out.println("The number as a string: " + TOSTRING100ENG[hundreds] + " "
+                            + TOSTRING20_90ENG[tens] + " " + TOSTRING1_9ENG[ones]);
                 System.out.print("Input number:(\"Exit\", to quit): ");
             }
         } catch (Exception e) {
