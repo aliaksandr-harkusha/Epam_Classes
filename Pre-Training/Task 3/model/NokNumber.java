@@ -1,4 +1,4 @@
-package test.Crap;
+package Task3.model;
 
 public class NokNumber {
 
