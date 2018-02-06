@@ -1,4 +1,5 @@
 package controller;
+
 import model.*;
 import view.View;
 
@@ -30,9 +31,5 @@ public class Test {
 
         View.print("\nTask 8. Last but not least, simple dividers of this numbers:");
         ShowSimpleDividers.showSimpleDividers(numberOne);
-
-
-
-
     }
 }
