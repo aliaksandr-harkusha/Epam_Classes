@@ -1,4 +1,4 @@
-package Task3;
+package Task3.model;
 
 import java.math.BigInteger;
 
