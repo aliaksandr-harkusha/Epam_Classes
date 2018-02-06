@@ -24,6 +24,5 @@ public class MoodSensor {
                 System.out.println("＼(￣▽￣)／");
                 break;
         }
-
     }
 }
