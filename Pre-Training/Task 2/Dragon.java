@@ -1,5 +1,3 @@
-package Task 2;
-
 public class Dragon {
 
     private static int YOUNG_DRAGON_AGE = 200;

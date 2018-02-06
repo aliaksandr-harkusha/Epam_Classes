@@ -1,11 +1,11 @@
-package Task3.model;
+package model;
 
 import java.math.BigInteger;
 
-public class NodNumber {
+    public class NodNumber {
 
     //найти НОД двух натуральных чисел a и b.
-    private static int nodNumber(int numberOne, int numberTwo) {
+    public static int nodNumber(int numberOne, int numberTwo) {
         BigInteger b1 = BigInteger.valueOf(numberOne);
         BigInteger b2 = BigInteger.valueOf(numberTwo);
         BigInteger gcd = b1.gcd(b2);

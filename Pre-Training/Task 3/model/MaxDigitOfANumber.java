@@ -1,9 +1,9 @@
-package Task3.model;
+package model;
 
 public class MaxDigitOfANumber {
 
     //найти наибольшую цифру натурального числа
-    public int getMaxDigitOfANumber(int numberToCheck) {
+    public static int getMaxDigitOfANumber(int numberToCheck) {
 
         int maxNumber = 0;
         int digit;

@@ -1,9 +1,9 @@
-package Task3.model;
+package model;
 
 public class NokNumber {
 
     //найти НОК двух натуральных чисел a и b.
-    private static int nokNumber(int numberOne, int numberTwo) {
+    public static int nokNumber(int numberOne, int numberTwo) {
         return (numberOne * numberTwo) / NodNumber.nodNumber(numberOne, numberTwo);
     }
 }

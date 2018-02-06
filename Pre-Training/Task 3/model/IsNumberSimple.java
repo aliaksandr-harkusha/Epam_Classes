@@ -1,9 +1,9 @@
-package Task3.model;
+package model;
 
 public class IsNumberSimple {
 
     //определить является ли заданное натуральное число простым
-    public boolean isNumberSimple(int numberToCheck) {
+    public static boolean isNumberSimple(int numberToCheck) {
         int counter = 0;
         for (int i = 1; i <= numberToCheck; i++) {
             if (numberToCheck % i == 0)

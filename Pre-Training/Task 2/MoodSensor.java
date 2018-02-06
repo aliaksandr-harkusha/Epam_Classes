@@ -1,5 +1,3 @@
-package Task2;
-
 public class MoodSensor {
 
     public void moodSensor() {

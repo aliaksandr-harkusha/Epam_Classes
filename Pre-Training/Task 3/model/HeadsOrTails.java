@@ -1,4 +1,4 @@
-package Task3.model;
+package model;
 
 /*
 Необходимо написать программу «Heads or Tails?» («Орёл или решка?»), кото-
@@ -8,7 +8,7 @@ package Task3.model;
 
 public class HeadsOrTails {
 
-    public void coinFlipper() {
+    public static void coinFlipper() {
         int heads = 0;
         int tails = 0;
         for (int i = 0; i < 1000; i++) {
@@ -16,11 +16,11 @@ public class HeadsOrTails {
                 heads++;
             else tails++;
         }
-        System.out.println("Решка - " + tails + "\nОрёл - " + heads);
+        System.out.println("Tails - " + tails + "\nHeads - " + heads);
     }
 
 
-    public boolean willMaker() {
+    public static boolean willMaker() {
         double x = Math.random();
         return (x > 0.5);
     }

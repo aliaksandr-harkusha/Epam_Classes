@@ -1,4 +1,4 @@
-package Test3.model;
+package model;
 
 public class IsNumberPerfect {
 
@@ -8,7 +8,7 @@ public class IsNumberPerfect {
    ное натуральное число совершенным. Для проверки работоспособности про-
    граммы приводится список некоторых совершенных чисел: 6, 28, 496, 8128.
    */
-    public boolean isNumberPerfect(int numberToCheck) {
+    public static boolean isNumberPerfect(int numberToCheck) {
         int sum = 0;
         for (int i = 1; i < numberToCheck; i++) {
             if (numberToCheck % i == 0)

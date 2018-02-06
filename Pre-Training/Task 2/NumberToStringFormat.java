@@ -1,5 +1,3 @@
-package Task2;
-
 import com.ibm.icu.text.RuleBasedNumberFormat;
 
 import java.io.BufferedReader;
