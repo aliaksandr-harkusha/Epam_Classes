@@ -1,4 +1,4 @@
-package Task3;
+package Task3.model;
 
 /*
 Необходимо написать программу «Heads or Tails?» («Орёл или решка?»), кото-
