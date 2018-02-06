@@ -7,7 +7,7 @@ public class ShowSimpleDividers {
 
         System.out.println("Простые делители числа:");
         for (int i = 1; i <= numberToCheck; i++)
-            if (isNumberSimple(i) && (numberToCheck % i == 0))
+            if (IsNumberSimple.isNumberSimple(i) && (numberToCheck % i == 0))
                 System.out.println(i);
     }
 }
