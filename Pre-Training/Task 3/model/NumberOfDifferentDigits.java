@@ -1,4 +1,4 @@
-package Test3;
+package Test3.model;
 
 public class NumberOfDifferentDigits {
 
