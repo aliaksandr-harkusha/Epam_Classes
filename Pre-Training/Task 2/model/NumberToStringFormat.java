@@ -27,7 +27,7 @@ public class NumberToStringFormat {
 
 
     // 8. Цифры в русские слова
-    public void digitToStringConverterRUS() {
+    public static void digitToStringConverterRUS() {
         System.out.print("*** Название числа в виде строки ***\nВведите число(\"Выход\", чтобы выйти): ");
         BufferedReader b1Reader = new BufferedReader(new InputStreamReader(System.in));
         String input;
@@ -104,7 +104,7 @@ public class NumberToStringFormat {
     }
 
     // 10. Цифры в английские слова - упрощённая версия - http://site.icu-project.org/download/55#TOC-ICU4J-Download
-    public void digitToStringConverterEasyENG() {
+    public static void digitToStringConverterEasyENG() {
         System.out.println("*** The name of the number as a string ***");
         System.out.print("Input number:(\"Exit\", to quit): ");
         BufferedReader b3Reader = new BufferedReader(new InputStreamReader(System.in));

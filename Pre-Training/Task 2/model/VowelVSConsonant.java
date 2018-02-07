@@ -9,7 +9,7 @@ public class VowelVSConsonant {
     private String consonantsString = new String(CONSONANTS);
 
     // 2. Гласная? Версия 1.
-    public boolean isVowelCheckerV1(char letterToCheck) {
+    public static boolean isVowelCheckerV1(char letterToCheck) {
         for (char c : VOWELS) {
             if (letterToCheck == c) {
                 return true;

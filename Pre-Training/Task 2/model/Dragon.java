@@ -1,8 +1,11 @@
 package model;
 
-import static controller.TestTaskTwo.*;
-
 public class Dragon {
+
+    public static int YOUNG_DRAGON_AGE = 200;
+    public static int OLD_DRAGON_AGE = 300;
+    public static int YOUNG_DRAGON_HEADS_GROW_RATE = 3;
+    public static int ADULT_DRAGON_HEADS_GROW_RATE = 2;
 
     public static int dragonAgeFinder(int dragonAge) {
         int heads = 3; // Dragon has 3 heads once born

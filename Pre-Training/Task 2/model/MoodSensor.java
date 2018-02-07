@@ -2,7 +2,7 @@ package model;
 
 public class MoodSensor {
 
-    public void moodSensor() {
+    public static void moodSensor() {
         int moodScale = (int) (Math.random() * 5);
         switch (moodScale) {
             case 0:
