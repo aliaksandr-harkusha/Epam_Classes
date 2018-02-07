@@ -1,11 +1,10 @@
+package model;
+
+import static controller.TestTaskTwo.*;
+
 public class Dragon {
 
-    private static int YOUNG_DRAGON_AGE = 200;
-    private static int OLD_DRAGON_AGE = 300;
-    private static int YOUNG_DRAGON_HEADS_GROW_RATE = 3;
-    private static int ADULT_DRAGON_HEADS_GROW_RATE = 2;
-
-    public int dragonAgeFinder(int dragonAge) {
+    public static int dragonAgeFinder(int dragonAge) {
         int heads = 3; // Dragon has 3 heads once born
         if (dragonAge < YOUNG_DRAGON_AGE)
             heads += dragonAge * YOUNG_DRAGON_HEADS_GROW_RATE; //First 200 years dragon grows 3 heads a year
@@ -17,7 +16,8 @@ public class Dragon {
         return heads;
     }
 
-    public int dragonEyesCounter(int dragonAge) {
-        return dragonAgeFinder(dragonAge) * 2;
+    public static int dragonEyesCounter(int dragonAge) {
+        return dragonAgeFinder(dragonAge) * 2; //each had has two eyes
     }
 }
+

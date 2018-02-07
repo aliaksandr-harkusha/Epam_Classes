@@ -1,3 +1,5 @@
+package model;
+
 public class VowelVSConsonant {
 
     private static char[] VOWELS = {'а', 'е', 'ё', 'и', 'о', 'у', 'э', 'я', 'ы', 'ю'};

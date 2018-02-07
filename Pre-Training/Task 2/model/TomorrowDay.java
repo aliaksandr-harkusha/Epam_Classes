@@ -1,3 +1,5 @@
+package model;
+
 public class TomorrowDay {
     private static int FIRST_DAY_OF_MONTH = 1;
     private static int FIRST_MONTH_OF_YEAR = 1;

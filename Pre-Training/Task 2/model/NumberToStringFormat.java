@@ -1,3 +1,5 @@
+package model;
+
 import com.ibm.icu.text.RuleBasedNumberFormat;
 
 import java.io.BufferedReader;
