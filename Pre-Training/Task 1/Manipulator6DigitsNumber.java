@@ -1,11 +1,9 @@
-package Task1;
-
 public class Manipulator6DigitsNumber {
     
     static double LENGTH_OF_6_DIGITS_NUMBER = 6.0;
 
     //6. Задача №6 - Арифметическое среднее цифр 6тизначного числа
-    public double arithAveOf6DigitsNumber(int number6Digits) {
+    public static double arithAveOf6DigitsNumber(int number6Digits) {
 
         int d6 = number6Digits % 10;
         int d5 = (number6Digits /= 10) % 10;
@@ -18,7 +16,7 @@ public class Manipulator6DigitsNumber {
     }
 
     //6. Задача №6 - Геометрическое среднее цифр 6тизначного числа
-    public double arithGeoOf6DigitsNumber(int number6Digits) {
+    public static double arithGeoOf6DigitsNumber(int number6Digits) {
 
         int d6 = number6Digits % 10;
         int d5 = (number6Digits /= 10) % 10;

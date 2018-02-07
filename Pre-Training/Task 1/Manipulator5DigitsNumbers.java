@@ -1,5 +1,3 @@
-package Task1;
-
 public class Manipulator5DigitsNumbers {
 
     //5. Задача №5 - Сумма цифр пятизначного числа

@@ -1,5 +1,3 @@
-package Task1;
-
 public class Manipulator7DigitsNumber {
 
     //7. Задача №7 - Реверз 7ми значного числа

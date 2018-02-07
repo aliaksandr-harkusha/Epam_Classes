@@ -1,5 +1,3 @@
-package Task1;
-
 public class CheckerDoesNumberIncrease {
 
     //4. Задача №4 - 4х-значная возрастаемость?
