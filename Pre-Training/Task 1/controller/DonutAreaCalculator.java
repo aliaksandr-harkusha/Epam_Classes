@@ -1,3 +1,5 @@
+package controller;
+
 public class DonutAreaCalculator {
 
     //2. Задача №2 - Площадь кольца

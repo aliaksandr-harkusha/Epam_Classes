@@ -1,3 +1,5 @@
+package controller;
+
 public class DinoMassCalculator {
     
     static int KILOS_TO_GRAMS = 1000;

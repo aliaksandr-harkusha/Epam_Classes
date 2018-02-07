@@ -1,3 +1,5 @@
+package controller;
+
 public class NumbersSwitcher {
 
     //3. Задача №3 - Переброс переменных
