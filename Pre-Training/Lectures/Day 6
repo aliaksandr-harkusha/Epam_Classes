@@ -1,3 +1,4 @@
+
 Class Object has 4 original methods:
   1) hashCode - возвращает int - уникальное значение объекта(4 миллиарда разных значений может быть - возможны совпадения)
   2) getClass - возвращает класс объекта
@@ -54,5 +55,6 @@ Singleton - класс который создаёт только 1 объект
 23) d
 24) b
 25) b
+*) d
 
 HomeWork - INSTALL JAVA DECOMPILATOR
