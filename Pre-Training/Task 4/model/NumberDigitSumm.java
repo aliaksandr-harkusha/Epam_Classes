@@ -10,6 +10,6 @@ public class NumberDigitSumm {
         if (number < 10) {
             return number;
         } else
-            return number % 10 + sumRecurs(number / 10)
+            return number % 10 + sumRecurs(number / 10);
     }
 }
