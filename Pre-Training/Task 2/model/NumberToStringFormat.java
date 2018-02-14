@@ -83,7 +83,7 @@ public class NumberToStringFormat {
         System.out.println("See ya later!!");
     }
 
-    // 10. Цифры в русские слова - упрощённая версия - http://site.icu-project.org/download/55#TOC-ICU4J-Download
+    // 10. Цифры в русские слова - упрощённая версия - http://download.icu-project.org/files/icu4j/55.1/icu4j-55_1.jar
     public void digitToStringConverterEasyRUS() {
         System.out.println("*** Название числа в виде строки ***");
         System.out.print("Введите число(\"Выход\", чтобы выйти): ");
