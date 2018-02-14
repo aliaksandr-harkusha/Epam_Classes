@@ -3,7 +3,7 @@ package model;
 public class MaxDigitOfANumber {
 
     //найти наибольшую цифру натурального числа
-    public static int getMaxDigitOfANumber(int numberToCheck) {
+    public static int calculateMaxDigitOfANumber(int numberToCheck) {
 
         int maxNumber = 0;
         int digit;
