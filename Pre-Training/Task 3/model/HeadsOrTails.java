@@ -6,22 +6,19 @@ package model;
 сколько раз выпал орёл, а сколько – решка.
  */
 
+import java.util.Random;
+
 public class HeadsOrTails {
 
-    public static void coinFlipper() {
+    public static int countHeadsCoinFlipper(int timesToFlip) {
         int heads = 0;
-        int tails = 0;
-        for (int i = 0; i < 1000; i++) {
-            if (willMaker())
+        Random rand = new Random();
+        for (int i = 0; i < timesToFlip; i++) {
+            if (rand.nextBoolean())
                 heads++;
-            else tails++;
         }
-        System.out.println("Tails - " + tails + "\nHeads - " + heads);
+        return heads;
     }
 
 
-    public static boolean willMaker() {
-        double x = Math.random();
-        return (x > 0.5);
-    }
 }
