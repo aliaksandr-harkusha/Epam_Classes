@@ -3,7 +3,7 @@ package model;
 public class NumberOfDifferentDigits {
 
     //найти количество различных цифр у заданного натурального числа.
-    public static int numberOfDifferentDigits(int numberToCheck) {
+    public static int countNumberOfDifferentDigits(int numberToCheck) {
 
         String stringNumberToCheck = Integer.toString(numberToCheck), uniqueNumbersStr = "";
         for (int i = 0; i < stringNumberToCheck.length(); i++) {
