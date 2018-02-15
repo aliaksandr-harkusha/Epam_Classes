@@ -1,3 +1,5 @@
+package model;
+
 public class HanoiTower {
 
     public static void main(String[] args) {
@@ -13,6 +15,6 @@ public class HanoiTower {
     }
 
     public static void movePrinter(String poleOne, String poleTwo) {
-        System.out.println(poleOne + "-->" + poleTwo);
+        View.print(poleOne + "-->" + poleTwo);
     }
 }
