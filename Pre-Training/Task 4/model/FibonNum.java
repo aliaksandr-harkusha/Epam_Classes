@@ -1,8 +1,6 @@
-public class FibonNum {
+package model;
 
-    public static void main(String[] args) {
-        System.out.println(fibonNum(0, 1, 7));
-    }
+public class FibonNum {
 
     public static int fibonNum(int n1, int n2, int num) {
         if (num <= 0)
