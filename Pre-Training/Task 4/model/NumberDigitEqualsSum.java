@@ -1,12 +1,10 @@
-public class NumberDigitEqualsSum {
+package model;
 
-    public static void main(String[] args) {
-        System.out.println(equals(1, 28));
-    }
+public class NumberDigitEqualsSum {
 
     public static boolean equals(int number, int sum) {
         if (number < 0 || sum < 0) {
-            System.out.println("Запрещено вводить отрицательные числа");
+            View.print("You're not allowed to input negative numbers");
             return false;
         } else return (sum == sumRecurs(number));
     }
