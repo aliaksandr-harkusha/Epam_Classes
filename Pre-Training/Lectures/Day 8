@@ -1,0 +1,13 @@
+Exceptions
+
+1) General Concepts
+2) Java Exception Hierarchy
+3) Using try\catch
+4) Using throw\throws
+5) Checked and Unchecked exceptions
+      Checked -> All Exceptions, excluding RuntimeException(ArithmeticException, NullPointerException, NoSuchElementException and others)
+      Unchecked -> Errors, RuntimeException
+      Все RuntimeException можно отловить условными конструкциями, например: 
+                if (n!=0){} -> отловили ArithmeticException или if(n!=null){} -> отловили NullPointerException.
+      
+6) 
