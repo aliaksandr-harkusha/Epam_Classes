@@ -6,6 +6,7 @@ public class Dragon {
     public static int OLD_DRAGON_AGE = 300;
     public static int YOUNG_DRAGON_HEADS_GROW_RATE = 3;
     public static int ADULT_DRAGON_HEADS_GROW_RATE = 2;
+    public static int EYES_PER_HEAD = 2;
 
     public static int dragonAgeFinder(int dragonAge) {
         int heads = 3; // Dragon has 3 heads once born
@@ -20,7 +21,7 @@ public class Dragon {
     }
 
     public static int dragonEyesCounter(int dragonAge) {
-        return dragonAgeFinder(dragonAge) * 2; //each had has two eyes
+        return dragonAgeFinder(dragonAge) * EYES_PER_HEAD; //each had has two eyes
     }
 }
 
