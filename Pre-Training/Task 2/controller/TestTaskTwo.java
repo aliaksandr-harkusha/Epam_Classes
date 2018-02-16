@@ -1,4 +1,4 @@
-package controller;
+ackage controller;
 
 import model.*;
 import view.ViewTaskTwo;
@@ -16,7 +16,7 @@ public class TestTaskTwo {
         ViewTaskTwo.print("Today you fell like - ");
         MoodSensor.moodSensor();
 
-        ViewTaskTwo.print("Let's convert some up to 1000 numbers to words:");
+        ViewTaskTwo.print("Let's convert some up to 1000 number to words:");
         NumberToStringFormat.digitToStringConverterEasyENG();
 
         ViewTaskTwo.print("If today is " + TODAY + " then:");
