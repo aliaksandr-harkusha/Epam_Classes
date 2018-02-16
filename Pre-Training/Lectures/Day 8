@@ -19,6 +19,21 @@ Exceptions
 
 HashCode - Это СОСТОЯНИЕ объекта, а не состояние памяти - соответсвенно сравнивать надо имя, возраст и другие
 
+Iterator it = list.iterator();
+it.hasNext();
+it.next();
+
+Iteratable -> Collections -> List (Индексный доступ)
+                          -> Set -> SortedSet, HashSet (Только уникальные значения), перебрать можно только через iterator
+                          -> Queue -> Deque
+                          -> Map -> SortedMap, HashMap, 
+                          -> Vector -> Stack (Старые, но потокобезопасны и тормознуты)
+
+ДЗ
+Таск 5 - реализовать классы линклист и эрэйлист
+Таск 6 - реализовать динамический массив с методами get, size, add, remove, contains
+
+
 Test
 1) D
 2) F
