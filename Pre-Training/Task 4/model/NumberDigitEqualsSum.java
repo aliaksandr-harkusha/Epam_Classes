@@ -2,7 +2,7 @@ package model;
 
 public class NumberDigitEqualsSum {
 
-    public static boolean equals(int number, int sum) {
+    public static boolean calculateIfEqual(int number, int sum) {
         if (number < 0 || sum < 0) {
             View.print("You're not allowed to input negative numbers");
             return false;
