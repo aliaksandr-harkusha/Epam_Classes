@@ -2,7 +2,7 @@ package model;
 
 public class PowFunction {
 
-    public static double pow(double number, int number2) {
+    public static double calculatePow(double number, int number2) {
         if (number == 0) {
             System.out.println("Please, don't use 0 as a first input number");
             return 0;
