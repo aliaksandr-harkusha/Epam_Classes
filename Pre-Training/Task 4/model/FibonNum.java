@@ -2,7 +2,7 @@ package model;
 
 public class FibonNum {
 
-    public static int fibonNum(int n1, int n2, int num) {
+    public static int calculatorFibonNum(int n1, int n2, int num) {
         if (num <= 0)
             return -1;
         else if (num == 1)
