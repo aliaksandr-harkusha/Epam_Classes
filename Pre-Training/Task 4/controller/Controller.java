@@ -11,22 +11,22 @@ public class Controller {
     }
 
     public static void solverHanoiRunner(int pollAmount, String poleFrom, String poleTo, String poleHelper) {
-        HanoiTower.moveMaker(pollAmount, poleFrom, poleTo, poleHelper);
+        HanoiTower.solveHanoiTower(pollAmount, poleFrom, poleTo, poleHelper);
     }
 
     public static int starterFibonNumber(int number) {
-        return FibonNum.fibonNum(0, 1, number);
+        return FibonNum.calculatorFibonNum(0, 1, number);
     }
 
     public static boolean comparatorIfDigitsSumEqualNumber(int number, int digitsSumToCompare) {
-        return NumberDigitEqualsSum.equals(number, digitsSumToCompare);
+        return NumberDigitEqualsSum.calculateIfEqual(number, digitsSumToCompare);
     }
 
     public static int calculatorSumOfNumberDigits(int number) {
-        return NumberDigitSumm.sumRecurs(1562);
+        return NumberDigitSumm.calculateSumRecurs(1562);
     }
 
     public static double exponentiator(double number, int powerOf) {
-        return PowFunction.pow(number, powerOf);
+        return PowFunction.calculatePow(number, powerOf);
     }
 }
