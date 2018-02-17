@@ -2,7 +2,7 @@ package model;
 
 public class NumberDigitSumm {
 
-    public static int sumRecurs(int number) {
+    public static int calculateSumRecurs(int number) {
         if (number < 10) {
             return number;
         } else
