@@ -7,6 +7,7 @@ public class PowFunction {
             System.out.println("Please, don't use 0 as a first input number");
             return 0;
         } else if (number2 == 0) return 1;
-        return number * pow(number, number2 - 1);
+        else if (number2 > 0) return number * calculatePow(number, number2 - 1);
+        else return 1 / (number * calculatePow(number, -number2 - 1));
     }
 }
