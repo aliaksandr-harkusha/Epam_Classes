@@ -10,19 +10,36 @@ public class TestTaskTwo {
     public static char CHARACT = 'ё';
 
     public static void main(String[] args) {
-        ViewTaskTwo.print("Dragon, which is " + DRAGON_AGE + " years old, has " +
-                Dragon.dragonAgeFinder(DRAGON_AGE) + " heads and " + Dragon.dragonEyesCounter(DRAGON_AGE) + " eyes");
+        finderDragonAge(DRAGON_AGE);
+        senseYourMood();
+        convertDigitToEngString();
+        findTomorrowDay(TODAY);
+        checkCharacterIsVowel(CHARACT);
+    }
 
+
+    public static void finderDragonAge(int dragonAge) {
+        ViewTaskTwo.print("Dragon, which is " + dragonAge + " years old, has " +
+                Dragon.dragonAgeFinder(dragonAge) + " heads and " + Dragon.dragonEyesCounter(dragonAge) + " eyes");
+    }
+
+    public static void senseYourMood() {
         ViewTaskTwo.print("Today you fell like - ");
         ViewTaskTwo.print(MoodSensor.moodSensor());
+    }
 
+    public static void convertDigitToEngString() {
         ViewTaskTwo.print("Let's convert some up to 1000 number to words:");
         NumberToStringFormat.digitToStringConverterEasyENG();
+    }
 
-        ViewTaskTwo.print("If today is " + TODAY + " then:");
-        ViewTaskTwo.print(TomorrowDay.tomorrowFinder(TODAY));
+    public static void findTomorrowDay(String today) {
+        ViewTaskTwo.print("If today is " + today + " then:");
+        ViewTaskTwo.print(TomorrowDay.tomorrowFinder(today));
+    }
 
-        ViewTaskTwo.print("True or false: " + CHARACT + " is vowel?");
-        ViewTaskTwo.print(VowelVSConsonant.isVowelCheckerV1(CHARACT));
+    public static void checkCharacterIsVowel(char character) {
+        ViewTaskTwo.print("True or false: " + character + " is vowel?");
+        ViewTaskTwo.print(VowelVSConsonant.isVowelCheckerV1(character));
     }
 }
