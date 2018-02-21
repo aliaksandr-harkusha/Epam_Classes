@@ -14,7 +14,7 @@ public class TestTaskTwo {
                 Dragon.dragonAgeFinder(DRAGON_AGE) + " heads and " + Dragon.dragonEyesCounter(DRAGON_AGE) + " eyes");
 
         ViewTaskTwo.print("Today you fell like - ");
-        MoodSensor.moodSensor();
+        ViewTaskTwo.print(MoodSensor.moodSensor());
 
         ViewTaskTwo.print("Let's convert some up to 1000 number to words:");
         NumberToStringFormat.digitToStringConverterEasyENG();
