@@ -15,7 +15,7 @@ public class Controller {
     }
 
     public static int starterFibonNumber(int number) {
-        return FibonNum.calculatorFibonNum(0, 1, number);
+        return FibonNum.calculateFibonNum(number);
     }
 
     public static boolean comparatorIfDigitsSumEqualNumber(int number, int digitsSumToCompare) {
