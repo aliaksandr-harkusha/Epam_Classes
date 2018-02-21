@@ -7,7 +7,7 @@ public class TomorrowDay {
     private static int LAST_MONTH_OF_YEAR = 12;
 
     // 7. Завтрашний день.
-    public static void tomorrowFinder(String todayDateFormatYYYY_MM_DD) {
+    public static String tomorrowFinder(String todayDateFormatYYYY_MM_DD) {
         String[] parts = todayDateFormatYYYY_MM_DD.split("_");
         int year = Integer.parseInt(parts[0]);
         int month = Integer.parseInt(parts[1]);
@@ -31,8 +31,6 @@ public class TomorrowDay {
             month++;
         }
          else day++;
-        System.out.println("Tomorrow is: year " + year + ", month " + month + ", day " + day);
+        return "Tomorrow is: year " + year + ", month " + month + ", day " + day;
     }
-
-
 }
