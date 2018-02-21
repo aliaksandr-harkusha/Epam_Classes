@@ -20,7 +20,7 @@ public class TestTaskTwo {
         NumberToStringFormat.digitToStringConverterEasyENG();
 
         ViewTaskTwo.print("If today is " + TODAY + " then:");
-        TomorrowDay.tomorrowFinder(TODAY);
+        ViewTaskTwo.print(TomorrowDay.tomorrowFinder(TODAY));
 
         ViewTaskTwo.print("True or false: " + CHARACT + " is vowel?");
         ViewTaskTwo.print(VowelVSConsonant.isVowelCheckerV1(CHARACT));
