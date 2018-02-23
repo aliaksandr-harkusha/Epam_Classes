@@ -3,7 +3,7 @@ package by.epam.preTraining.SiarheiHuba.tasks.task5.Models;
 public class Warehouse<Container> implements Storage<Container>{
 
     private Container[] warehouse;
-    private int spotID = 1;
+    private int spotID = 0;
     private static int ARRAY_INCREASE_SIZE = 10;
 
     public Warehouse() {
@@ -22,7 +22,7 @@ public class Warehouse<Container> implements Storage<Container>{
         return warehouse.length - spotID;
     }
 
-    public int getAmountOfTakenSpots() {
+    public int getAmountOfSpots() {
         return warehouse.length;
     }
 
@@ -31,7 +31,7 @@ public class Warehouse<Container> implements Storage<Container>{
     }
 
     public boolean isEmpty() {
-        return spotID == 1;
+        return spotID == 0;
     }
 
     public int size() {
@@ -105,7 +105,7 @@ public class Warehouse<Container> implements Storage<Container>{
 
     public void eraseBase() {
         warehouse = null;
-        spotID = 1;
+        spotID = 0;
     }
 
     public boolean contains(Object unit) {
