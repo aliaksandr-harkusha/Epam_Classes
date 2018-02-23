@@ -51,6 +51,7 @@ public class Warehouse<Container> implements Storage<Container>{
         }
     }
 
+    /*
     public boolean checkIfContainedByContainerID(int containerIDtoCheck) {
         boolean result = false;
         for (Container cont : warehouse) {
@@ -71,6 +72,8 @@ public class Warehouse<Container> implements Storage<Container>{
         }
         return num == res;
     }
+
+    */
 
     @Override
     public int hashCode() {
