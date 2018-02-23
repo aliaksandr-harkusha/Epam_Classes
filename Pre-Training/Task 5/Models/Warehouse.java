@@ -1,17 +1,17 @@
 package by.epam.preTraining.SiarheiHuba.tasks.task5.Models;
 
-public class Warehouse<Container> implements Storage<Container> {
+public class Warehouse<Container> implements Storage<Container>{
 
-    private int spotsQuantity;
-    private int[] availableSpots;
-    private int spotsAvailable;
     private Container[] warehouse;
     private int spotID = 1;
-    private int arrayLength;
     private static int ARRAY_INCREASE_SIZE = 10;
 
     public Warehouse() {
-        warehouse = new Container[ARRAY_INCREASE_SIZE];
+        warehouse = (Container[]) new Object[ARRAY_INCREASE_SIZE];
+    }
+
+    public Container[] getWarehouse() {
+        return warehouse;
     }
 
     public Container getContainerByIndex(int index) {
@@ -19,7 +19,7 @@ public class Warehouse<Container> implements Storage<Container> {
     }
 
     public int getAmountOfVacantSpots() {
-        return warehouse.length - spotID + 1;
+        return warehouse.length - spotID;
     }
 
     public int getAmountOfTakenSpots() {
@@ -27,15 +27,15 @@ public class Warehouse<Container> implements Storage<Container> {
     }
 
     public boolean isFull() {
-        return spotsAvailable == 0;
+        return warehouse.length - spotID == 0;
     }
 
     public boolean isEmpty() {
-        return spotsAvailable == spotsQuantity;
+        return spotID == 1;
     }
 
     public int size() {
-        return spotsQuantity;
+        return warehouse.length;
     }
 
     public void add(Container unit) {
@@ -45,38 +45,50 @@ public class Warehouse<Container> implements Storage<Container> {
         spotID++;
     }
 
-    public void add(Container... unit) {
+    public void addMultiple(Container... unit) {
         for (Container x : unit) {
-            if (warehouse.length == spotID)
-                addMoreSpaceToArray();
-            warehouse[spotID] = x;
-            spotID++;
+            add(x);
         }
     }
 
-    public boolean checkIfContainedByContainerID(int containerIDtoCheck){
+    public boolean checkIfContainedByContainerID(int containerIDtoCheck) {
         boolean result = false;
-        for(Container cont: warehouse){
+        for (Container cont : warehouse) {
             if (cont.getContainerID() == containerIDtoCheck)
                 result = true;
         }
         return result;
     }
 
-    public boolean checkSeveralIfContainedByContainerIDs (int... containerIDstoCheck){
+    public boolean checkSeveralIfContainedByContainerIDs(int... containerIDstoCheck) {
         int num = containerIDstoCheck.length;
         int res = 0;
-        for (Container cont: warehouse){
-            for (int i: containerIDstoCheck){
+        for (Container cont : warehouse) {
+            for (int i : containerIDstoCheck) {
                 if (cont.getContainerID() == i)
                     res++;
             }
         }
-        return num==res;
+        return num == res;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 
     public void addMoreSpaceToArray() {
-        Container[] warehouseReplaser = new Container[warehouse.length + ARRAY_INCREASE_SIZE];
+        Container[] warehouseReplaser = (Container[]) new Object[warehouse.length + ARRAY_INCREASE_SIZE];
 
         for (int i = 0; i < warehouse.length; i++) {
             warehouseReplaser[i] = warehouse[i];
@@ -88,11 +100,13 @@ public class Warehouse<Container> implements Storage<Container> {
         warehouse[index] = null;
     }
 
-    public void eraseBase(){
+    public void eraseBase() {
         warehouse = null;
+        spotID = 1;
     }
 
     public boolean contains(Object unit) {
         return false;
     }
 }
+
