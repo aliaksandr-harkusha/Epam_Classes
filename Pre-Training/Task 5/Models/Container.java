@@ -5,7 +5,7 @@ import java.util.Date;
 public class Container {
 
     private String type;
-    private int containerID = 0;
+    private int containerID = 1;
     private Date arrivalDate;
     private Date departureDate;
     private boolean isInsured;
@@ -61,7 +61,7 @@ public class Container {
 
     @Override
     public String toString() {
-        return "Container id: " + this.containerID + ", arrivalDate: " + arrivalDate + ", departureDate: " +
+        return "Container id: " + containerID + ", type " + type + ", arrivalDate: " + arrivalDate + ", departureDate: " +
                 departureDate;
     }
 
