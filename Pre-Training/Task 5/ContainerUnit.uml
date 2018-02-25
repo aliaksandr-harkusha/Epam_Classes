@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Model.ContainerUnit</OriginalElement>
+  <nodes>
+    <node x="270.625" y="802.0">Model.Calculator</node>
+    <node x="556.9796296296296" y="213.0">Model.Warehouse</node>
+    <node x="610.4796296296296" y="0.0">Model.Storage</node>
+    <node x="414.587037037037" y="948.0">Controller.Controller</node>
+    <node x="0.0" y="356.5">Model.ContainerUnit</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Controller.Controller" target="Model.Warehouse">
+      <point x="68.39999999999998" y="-26.0" />
+      <point x="568.487037037037" y="928.0" />
+      <point x="745.125" y="928.0" />
+      <point x="745.125" y="777.0" />
+      <point x="798.6462962962963" y="777.0" />
+      <point x="96.66666666666671" y="269.5" />
+    </edge>
+    <edge source="Controller.Controller" target="Model.Calculator">
+      <point x="0.0" y="-26.0" />
+      <point x="500.087037037037" y="928.0" />
+      <point x="497.125" y="928.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="Model.Calculator" target="Model.Warehouse">
+      <point x="113.25" y="-48.0" />
+      <point x="610.375" y="777.0" />
+      <point x="605.312962962963" y="777.0" />
+      <point x="-96.66666666666667" y="269.5" />
+    </edge>
+    <edge source="Controller.Controller" target="Model.ContainerUnit">
+      <point x="-68.39999999999998" y="-26.0" />
+      <point x="431.68703703703704" y="928.0" />
+      <point x="227.55925925925925" y="928.0" />
+      <point x="227.55925925925925" y="777.0" />
+      <point x="80.5" y="777.0" />
+      <point x="-161.0" y="126.0" />
+    </edge>
+    <edge source="Model.Calculator" target="Model.ContainerUnit">
+      <point x="-113.25" y="-48.0" />
+      <point x="383.875" y="777.0" />
+      <point x="402.5" y="777.0" />
+      <point x="161.0" y="126.0" />
+    </edge>
+    <edge source="Model.Warehouse" target="Model.Storage">
+      <point x="0.0" y="-269.5" />
+      <point x="0.0" y="81.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="410.0" y="286.0" />
+  <SelectedNodes>
+    <node>Model.ContainerUnit</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
