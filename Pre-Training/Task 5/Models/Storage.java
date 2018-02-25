@@ -1,10 +1,10 @@
 package by.epam.preTraining.SiarheiHuba.tasks.task5.Models;
 
-public interface Storage<X> {
+public interface Storage<T>{
     boolean isFull();
     boolean isEmpty();
     int size();
-    void add(X unit);
-    void remove(int index);
-    boolean contains(X unit);
+    void add(T unit);
+    void removeByID(int index);
+    boolean contains(T unit);
 }
