@@ -12,7 +12,7 @@ public class Calculator {
             } catch (NullPointerException e) {
             }
         }
-        return ins / total * 100;
+        return (double) ins / total * 100;
     }
 
     public static int getAmountOfVacantSpots(Warehouse<ContainerUnit> wHouse) {
