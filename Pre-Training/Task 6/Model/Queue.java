@@ -1,27 +1,28 @@
 package by.epam.preTraining.SiarheiHuba.tasks.task6.Model;
 
-public class Stack {
+public class Queue {
 
     Object[] array;
     public static int INCREASE_SIZE = 10;
-    int arrayIndex = 0;
+    int lastIndex = 0;
     int finalSize;
+    int firstIndex = 0;
 
-    public Stack(int finalSize) {
+    public Queue(int finalSize) {
         this.array = new Object[finalSize];
         this.finalSize = finalSize;
     }
 
-    public Stack() {
+    public Queue() {
         this.array = new Object[INCREASE_SIZE];
     }
 
-    //    push(): метод добавляет элемент в конец стека, который называется его вершиной;
+    //    enqueue(): метод добавляет элемент в конец очереди;
     public void push(Object obj) {
-        if (array.length == arrayIndex)
+        if (array.length == lastIndex)
             addMoreSpaceToArray();
-        array[arrayIndex] = obj;
-        arrayIndex++;
+        array[lastIndex] = obj;
+        lastIndex++;
     }
 
     public void addMoreSpaceToArray() {
@@ -32,33 +33,45 @@ public class Stack {
         array = arrayReplaser;
     }
 
-    //    pop(): метод удаляет с одновременным возвратом удаляемого элемента из вершины стека, если стек непустой;
-    public Object pop() {
-        Object x = array[arrayIndex];
-        array[arrayIndex] = 0;
-        arrayIndex--;
-        return x;
+    //    dequeue(): метод удаляет первый элемент с одновременным его возвратом из непустой очереди;
+    public Object dequeue() {
+        if (firstIndex < 1000)
+            firstIndex++;
+        else shortenQueue();
+        return array[firstIndex - 1];
     }
 
-    //    peek(): метод возвращает элемент из вершины стека, если стек не пустой; метод не должен удалять элемент из стека;
+    public void shortenQueue() {
+        Object[] arrayReplaser = new Object[lastIndex - firstIndex + INCREASE_SIZE];
+        int difference = lastIndex - firstIndex;
+        for (int i = 0; i < difference; i++) {
+            arrayReplaser[i] = array[firstIndex + i];
+        }
+        lastIndex = difference;
+        firstIndex = 0;
+        array = arrayReplaser;
+    }
+
+
+    //    peek(): метод возвращает первый элемент из непустой очереди; метод не должен удалять элемент из очереди;
     public Object peek() {
-        return array[arrayIndex];
+        return array[firstIndex];
     }
 
-    //    size(): метод возвращает общее количество элементов в стеке.
-    public int size(){
-        return arrayIndex;
+    //    size(): метод возвращает общее количество элементов в очереди.
+    public int size() {
+        return lastIndex-firstIndex;
     }
 
-    //    isEmpty(): метод возвращает булевское значение true, если стек является пустым,
+    //    isEmpty(): метод возвращает булевское значение true, если очередь является пустой,
     // в противном случае метод должен возвращать false;
-    public boolean isEmpty(){
-        return arrayIndex==0;
+    public boolean isEmpty() {
+        return lastIndex == firstIndex;
     }
 
-    //    isFull(): метод возвращает булевское значение true, если стек полностью заполнен,
+    //    isFull(): метод возвращает булевское значение true, если очередь полностью заполнена,
     // в противном случае метод должен возвращать false.
-    public boolean isFull(){
-        return arrayIndex==finalSize;
+    public boolean isFull() {
+        return lastIndex == finalSize;
     }
 }
