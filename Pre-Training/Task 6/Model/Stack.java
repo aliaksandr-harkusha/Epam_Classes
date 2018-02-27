@@ -61,4 +61,19 @@ public class Stack {
     public boolean isFull(){
         return arrayIndex==finalSize;
     }
+    
+    //    isPolindrome: С использованием разработанного абстрактного типа данных Стек (Stack) определите, 
+    // является ли заданная строка палиндромом.
+    public boolean isThisStringPolindrome(String input) {
+        String result = "";
+        Stack s = new Stack();
+        char[] tempChar = input.toCharArray();
+        for (char ch : tempChar) {
+            s.push(ch);
+        }
+        while (!s.isEmpty()) {
+            result += s.pop();
+        }
+        return result.equals(input);
+    }
 }
