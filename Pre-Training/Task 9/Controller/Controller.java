@@ -13,6 +13,5 @@ public class Controller {
         View.view(manipulator.swithcSentenceFirstAndLastWord(testString));
         View.view(manipulator.sortAllWordsAlphabeticOrder(testString));
    //   View.view(manipulator.sortContentShortToLongSentences(testString));
-   //   View.view((int)'x' + " " + (int)'h');
     }
 }
