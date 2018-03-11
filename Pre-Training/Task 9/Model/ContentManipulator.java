@@ -1,8 +1,16 @@
 package by.epam.preTraining.SiarheiHuba.tasks.Task9.Model;
 
 import by.epam.preTraining.SiarheiHuba.tasks.Task9.View.View;
+import org.apache.commons.lang3.StringUtils;
+
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class ContentManipulator {
+
+    public static ArrayList<String> LIST = new ArrayList<String>();
+    public static String PUNCT_LIST = "";
+    public static char[] PUNCTUATION_SYMBOLS = {'!', '?', '-', ':', ',', '.'};
 
     // 1) Найти наибольшее количество предложений текста, в которых есть одинаковые слова.
     public int getMaxNumberOfSentencesWithSimilarWord(String content) {
@@ -87,6 +95,7 @@ public class ContentManipulator {
         String[] sentences = breakContentToArrayOfSentences(content);
         String result = "";
         String[] words;
+
         String temp;
         for (int i = 0; i < sentences.length; i++) {
             sentences[i] = sentences[i].trim();
@@ -146,41 +155,310 @@ public class ContentManipulator {
         return result;
     }
 
-// 8) Слова текста, начинающиеся с гласных букв, рассортировать в алфавитном порядке по первой согласной букве слова.
-// 9) Все слова текста рассортировать по возрастанию количества заданной буквы в слове. Слова с одинаковым количеством расположить в алфавитном порядке.
-// 10) Существует текст и список слов. Для каждого слова из заданного списка найти, сколько раз оно встречается в каждом предложении, и рассортировать слова по убыванию общего количества вхождений.
-// 11) В каждом предложении текста исключить подстроку максимальной длины, начинающуюся и заканчивающуюся заданными символами.
-// 12) Из текста удалить все слова заданной длины, начинающиеся на согласную букву.
-// 13) Отсортировать слова в тексте по убыванию количества вхождений заданного символа, а в случае равенства – по алфавиту.
-// 14) В заданном тексте найти подстроку максимальной длины, являющуюся палиндромом, т.е. читающуюся слева направо и справа налево одинаково.
-// 15) Преобразовать каждое слово в тексте, удалив из него все последующие вхождения первой буквы этого слова.
-// 16) Преобразовать каждое слово в тексте, удалив из него все предыдущие вхождения последней буквы этого слова.
-// 17) В некотором предложении текста слова заданной длины заменить указанной подстрокой, длина которой может не совпадать с длиной слова.
+    // 8) Слова текста, начинающиеся с гласных букв, рассортировать в алфавитном порядке по первой согласной букве слова.
+    public String sortWordsByFirstConsonant(String content) {
+        String[] words = breakContentToArrayOfWords(content);
+        int size = words.length;
+        String newWords = "", temp, result = "";
+        for (int i = 0; i < size; i++) {
+            if (isVowel(words[i].charAt(0)))
+                newWords = newWords + (words[i]) + " ";
+        }
+        String[] listToSort = newWords.trim().split(" ");
+        int listSize = listToSort.length;
+        for (int x = 0; x < listSize; x++) {
+            for (int y = 1; y < listSize - x; y++) {
+                if (getFirstConsonant(listToSort[y]) < getFirstConsonant(listToSort[y - 1])) {
+                    temp = listToSort[y];
+                    listToSort[y] = listToSort[y - 1];
+                    listToSort[y - 1] = temp;
+                }
+            }
+        }
+        for (String str : listToSort) {
+            result = result + str + " ";
+        }
+        return result;
+    }
+
+    // 9) Все слова текста рассортировать по возрастанию количества заданной буквы в слове.
+    // Слова с одинаковым количеством расположить в алфавитном порядке.
+    public String sortWordsBasedOnOneLetterQuantity(String content, char Letter) {
+        String[] words = breakContentToArrayOfWords(content);
+        TreeMap<Integer, ArrayList<String>> map = new TreeMap<Integer, ArrayList<String>>();
+        ArrayList<String> list;
+        String result = "";
+        int counter = 0;
+        for (String word : words) {
+            counter = counter + StringUtils.countMatches(word, Letter);
+            if (map.containsKey(counter))
+                list = map.get(counter);
+            else
+                list = new ArrayList<String>();
+            list.add(word);
+            Collections.sort(list);
+            map.put(counter, list);
+            counter = 0;
+        }
+        for (Integer occurencyRate : map.keySet()) {
+            for (String st : map.get(occurencyRate)) {
+                result = result + st + " ";
+            }
+        }
+        return result.trim();
+    }
+
+    // 10) Существует текст и список слов. Для каждого слова из заданного списка найти,
+// сколько раз оно встречается в каждом предложении, и рассортировать слова по убыванию общего количества вхождений.
+    public String sortSentencesByWordsRepetition(String content, String[] words) {
+        int counter = 0;
+        TreeMap<Integer, ArrayList<String>> map = new TreeMap<Integer, ArrayList<String>>(Collections.reverseOrder());
+        ArrayList<String> list;
+        String result = "";
+        for (String word : words) {
+            counter = counter + StringUtils.countMatches(content, word);
+            if (map.containsKey(counter))
+                list = map.get(counter);
+            else
+                list = new ArrayList<String>();
+            list.add(word);
+            map.put(counter, list);
+            counter = 0;
+        }
+        for (Integer occurencyRate : map.keySet()) {
+            for (String st : map.get(occurencyRate)) {
+                result = result + st + " ";
+            }
+        }
+        return result.trim();
+    }
+
+    // 11) В каждом предложении текста исключить подстроку максимальной длины, начинающуюся и заканчивающуюся заданными символами.
+    public String removeLongestSubstring(String content, char firstCharacter, char lastCharacter) {
+        String[] sentences = breakContentToArrayOfSentences(content);
+        pushPuntuationSimbolsToDB(content);
+        String result = "";
+        for (int i = 0; i < sentences.length; i++) {
+            try {
+                sentences[i] = sentences[i].replaceAll(sentences[i].substring
+                        (sentences[i].indexOf(firstCharacter), sentences[i].lastIndexOf(lastCharacter)), "");
+            } catch (IndexOutOfBoundsException e) {
+            }
+        }
+        for (String sentence : sentences) {
+            result = result + sentence + ". ";
+        }
+        return returnPunctuationSymbols(result.substring(0, result.length() - 2));
+    }
+
+
+    // 12) Из текста удалить все слова заданной длины, начинающиеся на согласную букву.
+    public String removeWordsThatStartsWithConstLetterAndFixedSize(String content, int wordSize) {
+        String[] sentences = breakContentToArrayOfSentences(content);
+        String finalWords = "";
+        pushPuntuationSimbolsToDB(content);
+        for (String sentence : sentences) {
+            String[] words = sentence.split(" ");
+            for (int i = 0; i < words.length; i++) {
+                if (countLettersInWord(words[i]) == wordSize && !isVowel(words[i].charAt(0))) {
+                    words[i] = "";
+                }
+            }
+            for (String word : words) {
+                finalWords = finalWords + word + " ";
+            }
+            finalWords = finalWords.trim() + ".";
+        }
+        return returnPunctuationSymbols(trimExtraSpaces(finalWords));
+    }
+
+    // 13) Отсортировать слова в тексте по убыванию количества вхождений заданного символа, а в случае равенства – по алфавиту.
+    public static String sortAllWordsBasedOnSymbolOccurencyRate(String content, String symbol) {
+        TreeMap<Integer, ArrayList<String>> map = new TreeMap<Integer, ArrayList<String>>(Collections.reverseOrder());
+        ArrayList<String> strList;
+        int count = 0;
+        String words[] = breakContentToArrayOfWords(content);
+        int size = words.length;
+        for (int i = 0; i < size; i++) {
+            count = StringUtils.countMatches(words[i], symbol);
+            if (map.containsKey(count)) {
+                strList = map.get(count);
+            } else strList = new ArrayList<String>();
+            strList.add(words[i]);
+            Collections.sort(strList);
+            map.put(count, strList);
+        }
+        String result = "";
+        for (Integer key : map.keySet()) {
+            ArrayList<String> sList = map.get(key);
+            for (String st : sList) {
+                result = result + st + " ";
+            }
+        }
+        return result.trim();
+    }
+
+    // 14) В заданном тексте найти подстроку максимальной длины, являющуюся палиндромом,
+// т.е. читающуюся слева направо и справа налево одинаково.
+    public static String getLongestPolindrome(String content) {
+        int size = content.length();
+        String poly = "";
+        for (int i = 1; i < size; i++) {
+            int k = 0, maxSize = 0;
+            while (i - 1 - k >= 0 && i + 1 + k < size && isPalindrome(content.substring(i - 1 - k, i + 1 + k))) {
+                if (k * 2 > maxSize) {
+                    maxSize = k * 2;
+                    poly = content.substring(i - 1 - k, i + 1 + k);
+                }
+                k++;
+            }
+            k = 0;
+            while (i - 1 - k >= 0 && i + 2 + k < size && isPalindrome(content.substring(i - 1 - k, i + 2 + k))) {
+                if (k * 2 > maxSize) {
+                    maxSize = k * 2;
+                    poly = content.substring(i - 1 - k, i + 2 + k);
+                }
+                k++;
+            }
+
+        }
+        return poly;
+    }
+
+    public static boolean isPalindrome(String s) {
+        int n = s.length();
+        for (int i = 0; i < (n / 2 + s.length() % 2); ++i) {
+            if (s.charAt(i) != s.charAt(n - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    // 15) Преобразовать каждое слово в тексте, удалив из него все последующие вхождения первой буквы этого слова.
+    public static String removeAllLettersSameAsFirstLetterOfAWord(String content) {
+        String[] words = content.split(" ");
+        String result = "";
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].charAt(0) + words[i].replaceAll(String.valueOf(words[i].charAt(0)), "");
+        }
+        for (String word : words) {
+            result = result + word + " ";
+        }
+        return result.trim();
+    }
+
+    // 16) Преобразовать каждое слово в тексте, удалив из него все предыдущие вхождения последней буквы этого слова.
+    public static String removeAllLettersSameAsLastLetterOfAWord(String content) {
+        String[] words = content.split(" ");
+        String result = "";
+        for (int i = 0; i < words.length; i++) {
+            words[i] = words[i].substring(0, words[i].lastIndexOf(getLastLetter(words[i]))).
+                    replaceAll(String.valueOf(getLastLetter(words[i])), "") +
+                    words[i].substring(words[i].lastIndexOf(getLastLetter(words[i])), words[i].length());
+        }
+        for (String word : words) {
+            result = result + word + " ";
+        }
+        return result.trim();
+    }
+
+    public static String getLastLetter(String word) {
+        int size = word.length() - 1;
+        for (int i = size; i >= 0; i--) {
+            if (Character.isLetter(word.charAt(i)))
+                return String.valueOf(word.charAt(i));
+            else getLastLetter(word.substring(0, word.length() - 1));
+        }
+        return "";
+    }
+
+    // 17) В некотором предложении текста слова заданной длины заменить указанной подстрокой,
+// длина которой может не совпадать с длиной слова.
+    public String replaceEachWordWithSpecificLengthInSpecificSentenceWithNewWord
+    (String content, String newWord, int sentenceNumber, int wordsLength) {
+        pushPuntuationSimbolsToDB(content);
+        String finalWords = "", finalWordsOneSentence = "";
+        String[] sentences = breakContentToArrayOfSentences(content);
+        for (int i = 0; i < sentences.length; i++) {
+            if ((i + 1) == sentenceNumber) {
+                String[] words = breakContentToArrayOfWords(sentences[i]);
+                for (int x = 0; x < words.length; x++) {
+                    if (words[x].length() == wordsLength)
+                        words[x] = newWord;
+                }
+                for (String word : words) {
+                    finalWordsOneSentence = finalWordsOneSentence + " " + word;
+                }
+                sentences[i] = finalWordsOneSentence.trim();
+            }
+            finalWords = finalWords + ".";
+        }
+        return returnPunctuationSymbols(finalWords);
+    }
 
 
     //Helpers
 
 
     // Breaks a string to array of strings removing dots and spaces.
-    public String[] breakContentToArrayOfWords(String str) {
-        str = str.replace(".", "");
-        str = str.replace("?", "");
-        str = str.replace("!", "");
-        str = str.replace(",", "");
-        return str.toLowerCase().split(" ");
+    public static String[] breakContentToArrayOfWords(String str) {
+        return str.toLowerCase().replaceAll("\\p{Punct}", "").split(" ");
     }
 
     // Breaks a string to array of sentences
     public String[] breakContentToArrayOfSentences(String str) {
-        str = str.replace("?", "\\.");
-        str = str.replace("!", "\\.");
-        String[] strArray = str.toLowerCase().split("\\.");
+        String[] strArray = str.toLowerCase().split("[\\.!\\?+]+");
         for (String x : strArray) {
             x = x.trim();
         }
         return strArray;
     }
-    
+
+    public static String returnPunctuationSymbols(String str) {
+        String result = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '.') {
+                result = result + pullPunctuationSimbols();
+            } else
+                result = result + str.charAt(i);
+        }
+        return result;
+    }
+
+    public static void pushPuntuationSimbolsToDB(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            for (char punct : PUNCTUATION_SYMBOLS) {
+                if (str.charAt(i) == punct) {
+                    PUNCT_LIST = PUNCT_LIST + str.charAt(i);
+                }
+            }
+        }
+    }
+
+    public static boolean chechTwoWordsIfSortedAlphabetically(String word1, String word2) {
+        if (word1.length() > 0 && word2.length() > 0) {
+            if (word2.charAt(0) > word1.charAt(0)) {
+                return true;
+            } else if (word2.charAt(0) < word1.charAt(0))
+                return false;
+            else return (chechTwoWordsIfSortedAlphabetically
+                        (word1.substring(1, word1.length()), word2.substring(1, word2.length())));
+        }
+        return false;
+    }
+
+    public static char pullPunctuationSimbols() {
+        char x = PUNCT_LIST.charAt(0);
+        PUNCT_LIST = PUNCT_LIST.substring(1, PUNCT_LIST.length());
+        return x;
+    }
+
+    public static int countLettersInWord(String word) {
+        return word.length();
+    }
+
     //Counts vowels in a string
     public static int countVowels(String str) {
         int count = 0;
@@ -191,5 +469,24 @@ public class ContentManipulator {
             }
         }
         return count;
+    }
+
+    public static boolean isVowel(char charToCheck) {
+        return ("aeiou".indexOf(charToCheck) >= 0);
+    }
+
+    public static String trimExtraSpaces(String str) {
+        while (str.contains("  ")) {
+            str = str.replace("  ", " ");
+        }
+        return str;
+    }
+
+
+    public char getFirstConsonant(String word) {
+        if (!isVowel(word.charAt(0)))
+            return word.charAt(0);
+        else if (word.length() == 1) return '0';
+        else return getFirstConsonant(word.substring(1, word.length()));
     }
 }
