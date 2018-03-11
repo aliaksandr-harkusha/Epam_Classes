@@ -3,30 +3,29 @@ package by.epam.preTraining.SiarheiHuba.tasks.Task9.Model;
 import by.epam.preTraining.SiarheiHuba.tasks.Task9.View.View;
 import org.apache.commons.lang3.StringUtils;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class ContentManipulator {
 
-    public static ArrayList<String> LIST = new ArrayList<String>();
-    public static String PUNCT_LIST = "";
-    public static char[] PUNCTUATION_SYMBOLS = {'!', '?', '-', ':', ',', '.'};
+    private static String PUNCT_LIST = "";
+    private static char[] PUNCTUATION_SYMBOLS = {'!', '?', '-', ':', ',', '.'};
+    private static int COUNTER = 0;
 
     // 1) Найти наибольшее количество предложений текста, в которых есть одинаковые слова.
     public int getMaxNumberOfSentencesWithSimilarWord(String content) {
         String[] sentences = breakContentToArrayOfSentences(content);
-        int size = sentences.length;
-        int counter = 1, max = 0;
+        int size = sentences.length, max = 0;
+        COUNTER = 1;
         for (String eachSentence : sentences) {
             String[] wordsArray = eachSentence.split(" ");
             for (String singleWord : wordsArray) {
                 for (int z = 1; z < size; z++) {
                     if (sentences[z].contains(singleWord))
-                        counter++;
+                        COUNTER++;
                 }
-                if (counter > max)
-                    max = counter;
-                counter = 1;
+                if (COUNTER > max)
+                    max = COUNTER;
+                COUNTER = 1;
             }
         }
         return max;
@@ -34,11 +33,7 @@ public class ContentManipulator {
 
     // 2) Вывести все предложения заданного текста в порядке возрастания количества слов в каждом из них.
     public String sortContentShortToLongSentences(String content) {
-        String s = content.replace("...", ".");
-        String[] sentences = s.split("\\. ");
-        for (int i = 0; i < sentences.length; i++) {
-            sentences[i] = sentences[i].trim();
-        }
+        String[] sentences = breakContentToArrayOfSentences(content);
         String result = "";
         int x = sentences.length;
         for (int i = 1; i < x; i++) {
@@ -56,6 +51,7 @@ public class ContentManipulator {
         return result;
     }
 
+
     // 3) Найти такое слово в первом предложении, которого нет ни в одном из остальных предложений.
     public String findUniqueWordFromFirstSentence(String content) {
         String[] sentences = breakContentToArrayOfSentences(content);
@@ -66,7 +62,6 @@ public class ContentManipulator {
                 if (!sentences[x].contains(wordToCheck))
                     return wordToCheck;
             }
-
         }
         return "";
     }
@@ -93,28 +88,14 @@ public class ContentManipulator {
     // 5) В каждом предложении текста поменять местами первое слово с последним, не изменяя длины предложения.
     public String swithcSentenceFirstAndLastWord(String content) {
         String[] sentences = breakContentToArrayOfSentences(content);
-        String result = "";
+        String result = "", temp;
         String[] words;
-
-        String temp;
         for (int i = 0; i < sentences.length; i++) {
             sentences[i] = sentences[i].trim();
-        }
-        for (int i = 0; i < sentences.length; i++) {
-            words = sentences[i].split(" ");
-            temp = words[0];
-            int x = words.length - 1;
-            words[0] = words[x];
-            words[x] = temp;
-            sentences[i] = "";
-            for (String str : words) {
-                sentences[i] = sentences[i] + str + " ";
-            }
-            sentences[i] = sentences[i].trim();
-        }
-
-        for (String str : sentences) {
-            result = result + str + ". ";
+            sentences[i] = sentences[i].substring(sentences[i].lastIndexOf(" "), sentences[i].length()) +
+                    sentences[i].substring(sentences[i].indexOf(" "), sentences[i].lastIndexOf(" ")) + " " +
+                    sentences[i].substring(0, sentences[i].indexOf(" "));
+            result = result + sentences[i] + ". ";
         }
         return result;
     }
@@ -273,7 +254,7 @@ public class ContentManipulator {
     }
 
     // 13) Отсортировать слова в тексте по убыванию количества вхождений заданного символа, а в случае равенства – по алфавиту.
-    public static String sortAllWordsBasedOnSymbolOccurencyRate(String content, String symbol) {
+    public String sortAllWordsBasedOnSymbolOccurencyRate(String content, String symbol) {
         TreeMap<Integer, ArrayList<String>> map = new TreeMap<Integer, ArrayList<String>>(Collections.reverseOrder());
         ArrayList<String> strList;
         int count = 0;
@@ -300,7 +281,7 @@ public class ContentManipulator {
 
     // 14) В заданном тексте найти подстроку максимальной длины, являющуюся палиндромом,
 // т.е. читающуюся слева направо и справа налево одинаково.
-    public static String getLongestPolindrome(String content) {
+    public String getLongestPolindrome(String content) {
         int size = content.length();
         String poly = "";
         for (int i = 1; i < size; i++) {
@@ -325,7 +306,7 @@ public class ContentManipulator {
         return poly;
     }
 
-    public static boolean isPalindrome(String s) {
+    private static boolean isPalindrome(String s) {
         int n = s.length();
         for (int i = 0; i < (n / 2 + s.length() % 2); ++i) {
             if (s.charAt(i) != s.charAt(n - i - 1)) {
@@ -337,7 +318,7 @@ public class ContentManipulator {
 
 
     // 15) Преобразовать каждое слово в тексте, удалив из него все последующие вхождения первой буквы этого слова.
-    public static String removeAllLettersSameAsFirstLetterOfAWord(String content) {
+    public String removeAllLettersSameAsFirstLetterOfAWord(String content) {
         String[] words = content.split(" ");
         String result = "";
         for (int i = 0; i < words.length; i++) {
@@ -350,7 +331,7 @@ public class ContentManipulator {
     }
 
     // 16) Преобразовать каждое слово в тексте, удалив из него все предыдущие вхождения последней буквы этого слова.
-    public static String removeAllLettersSameAsLastLetterOfAWord(String content) {
+    public String removeAllLettersSameAsLastLetterOfAWord(String content) {
         String[] words = content.split(" ");
         String result = "";
         for (int i = 0; i < words.length; i++) {
@@ -364,7 +345,7 @@ public class ContentManipulator {
         return result.trim();
     }
 
-    public static String getLastLetter(String word) {
+    private static String getLastLetter(String word) {
         int size = word.length() - 1;
         for (int i = size; i >= 0; i--) {
             if (Character.isLetter(word.charAt(i)))
@@ -403,12 +384,13 @@ public class ContentManipulator {
 
 
     // Breaks a string to array of strings removing dots and spaces.
-    public static String[] breakContentToArrayOfWords(String str) {
+    private static String[] breakContentToArrayOfWords(String str) {
         return str.toLowerCase().replaceAll("\\p{Punct}", "").split(" ");
     }
 
     // Breaks a string to array of sentences
-    public String[] breakContentToArrayOfSentences(String str) {
+    private String[] breakContentToArrayOfSentences(String str) {
+        pushPuntuationSimbolsToDB(str);
         String[] strArray = str.toLowerCase().split("[\\.!\\?+]+");
         for (String x : strArray) {
             x = x.trim();
@@ -416,7 +398,7 @@ public class ContentManipulator {
         return strArray;
     }
 
-    public static String returnPunctuationSymbols(String str) {
+    private static String returnPunctuationSymbols(String str) {
         String result = "";
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == '.') {
@@ -427,7 +409,7 @@ public class ContentManipulator {
         return result;
     }
 
-    public static void pushPuntuationSimbolsToDB(String str) {
+    private static void pushPuntuationSimbolsToDB(String str) {
         for (int i = 0; i < str.length(); i++) {
             for (char punct : PUNCTUATION_SYMBOLS) {
                 if (str.charAt(i) == punct) {
@@ -437,7 +419,7 @@ public class ContentManipulator {
         }
     }
 
-    public static boolean chechTwoWordsIfSortedAlphabetically(String word1, String word2) {
+    private static boolean chechTwoWordsIfSortedAlphabetically(String word1, String word2) {
         if (word1.length() > 0 && word2.length() > 0) {
             if (word2.charAt(0) > word1.charAt(0)) {
                 return true;
@@ -449,18 +431,18 @@ public class ContentManipulator {
         return false;
     }
 
-    public static char pullPunctuationSimbols() {
+    private static char pullPunctuationSimbols() {
         char x = PUNCT_LIST.charAt(0);
         PUNCT_LIST = PUNCT_LIST.substring(1, PUNCT_LIST.length());
         return x;
     }
 
-    public static int countLettersInWord(String word) {
+    private static int countLettersInWord(String word) {
         return word.length();
     }
 
     //Counts vowels in a string
-    public static int countVowels(String str) {
+    private static int countVowels(String str) {
         int count = 0;
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i'
@@ -471,11 +453,11 @@ public class ContentManipulator {
         return count;
     }
 
-    public static boolean isVowel(char charToCheck) {
+    private static boolean isVowel(char charToCheck) {
         return ("aeiou".indexOf(charToCheck) >= 0);
     }
 
-    public static String trimExtraSpaces(String str) {
+    private static String trimExtraSpaces(String str) {
         while (str.contains("  ")) {
             str = str.replace("  ", " ");
         }
@@ -483,10 +465,18 @@ public class ContentManipulator {
     }
 
 
-    public char getFirstConsonant(String word) {
+    private char getFirstConsonant(String word) {
         if (!isVowel(word.charAt(0)))
             return word.charAt(0);
         else if (word.length() == 1) return '0';
         else return getFirstConsonant(word.substring(1, word.length()));
+    }
+
+    private static String combineSentencesBack(String[] sentences) {
+        String result = "";
+        for (String str : sentences) {
+            result = result + str + ". ";
+        }
+        return returnPunctuationSymbols(result);
     }
 }
