@@ -11,3 +11,22 @@ aliaksandr_harkusha@epam.com
 пон ср пят
 
 След занятие - пятница
+
+Книги для прочтения
+1) Head First Java
+2) Блинов (2013)
+3) Работа с MySQL MS SQL Server Oracle в примерах (Куликов Станислав)
+
+Javadoc method example:
+    /**
+     * Method showHealth description. This method was created to show actual health data about an object.
+     *
+     * @param health shows health amount
+     * @author Sergo Huba
+     * @return returns health amount multiplied by two
+     * @since 2014-03-31
+     */
+    public int showHealth(int health) {
+        return health*100;
+    }
+
