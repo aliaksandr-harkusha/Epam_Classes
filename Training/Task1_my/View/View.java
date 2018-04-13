@@ -1,4 +1,5 @@
 public static void View{
-  public void view(Object obj){
-  System.out.println(obj);}
-  }
+public void view(Object obj){
+        System.out.println(obj);}
+        }
+}
