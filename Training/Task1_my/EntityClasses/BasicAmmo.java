@@ -1,3 +1,3 @@
-interface BasicAmmo{
+public abstract class BasicAmmo {
 
 }
