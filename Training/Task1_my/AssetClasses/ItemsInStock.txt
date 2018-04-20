@@ -1,0 +1,11 @@
+Gloves 13.99 15.4
+Gloves 11.99 15.1
+Helmet 52.19 84.0
+Helmet 82.29 92.0
+Helmet 89.99 72.0
+Boots 192.29 99.50
+Boots 148.79 120.29
+Jacket 492.29 2921.50
+Jacket 599.99 1938.70
+Pants 199.95 300
+Pants 179.99 250
