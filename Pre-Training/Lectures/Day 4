@@ -9,8 +9,8 @@
 -> Интерфайс должен быть тонким - не сильно раздут
 5) Dependency Inversion Principle
 -> Низкоуровневые классы и высокоуровневые классы не должны зависеть друг от друга
-6) Model-View-Controller MVC
--> User-Controller-Model-View-User
+6) Model-View-by.epam.SiarheiHuba.src.Task1.Controller MVC
+-> User-by.epam.SiarheiHuba.src.Task1.Controller-Model-View-User
 
 !!!!Скачать Java deCompilator!!!!
 
