@@ -28,7 +28,7 @@ public class GearCreator {
 
     public static void fillContainerFromStock(ShelfContainer shelfContainer) {
         String input;
-        String filepath = "by/epam/SiarheiHuba/src/Task1/Model/ActionClasses/ItemsInStock.txt";
+        String filepath = "Training/by/epam/SiarheiHuba/src/Task1/Model/ActionClasses/ItemsInStock.txt";
         File file = new File(filepath);
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
