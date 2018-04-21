@@ -19,6 +19,7 @@ public class Runner {
         Runner.printBikerTotalGearCost(biker);
         Runner.generateAndPrintNewDressedBiker();
         Runner.generateAndPrintNewRandomlyDressedBiker();
+
     }
 
     public static void printSortedHelmetShelf(ShelfContainer shelf) {

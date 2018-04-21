@@ -2,7 +2,9 @@ package by.epam.SiarheiHuba.src.Task1.Model.AssetClasses.Gear;
 
 import by.epam.SiarheiHuba.src.Task1.View.View;
 
-public class MotorcycleGear implements Comparable {
+import java.util.Comparator;
+
+public abstract class MotorcycleGear implements Comparable {
     protected double weight;
     protected String model = "no model name";
     protected double price;
@@ -39,6 +41,17 @@ public class MotorcycleGear implements Comparable {
     }
 
     public int compareTo(Object o) {
+        MotorcycleGear gear = null;
+        try {
+            gear = (MotorcycleGear) o;
+        } catch (ClassCastException e) {
+            e.printStackTrace();
+            View.view("Object is not a MororcycleGear type");
+        }
+        return Double.compare(this.getWeight(), gear.getWeight());
+    }
+
+    public int compareByPrice(Object o) {
         MotorcycleGear gear = null;
         try {
             gear = (MotorcycleGear) o;
