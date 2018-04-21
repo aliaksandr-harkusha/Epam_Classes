@@ -1,3 +1,7 @@
+//правила именования пакетов:
+//1. все буквы в названии должны быть маленькими
+//2. src - не должно входить в название пакета
+//3. правильное название должно быть типа - by.epam.task1.model или com.epam.task1.model
 package by.epam.SiarheiHuba.src.Task1.Model.AssetClasses.Gear;
 
 import by.epam.SiarheiHuba.src.Task1.View.View;
