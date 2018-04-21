@@ -1,3 +1,4 @@
+//Action-классы лучше вынести из пакета модели, а создать пакет service в task1 
 package by.epam.SiarheiHuba.src.Task1.Model.ActionClasses;
 
 import by.epam.SiarheiHuba.src.Task1.Model.AssetClasses.Biker;
@@ -12,7 +13,9 @@ public class BikerManipulator {
         return new Biker(new Helmet(), new Jacket(), new Gloves(), new Pants(), new Boots());
     }
 
+    //b - неинформативное название параметра - для длинных методов - не удобно постоянно перемещаться к названию метода чтобы посмотреть название параметра
     public static Biker dressBikerUpEASY(Biker b, ShelfContainer container) {
+        //тело операторов условий, циклов и т.д. лучше всегда брать в {}, чтобы не забывать про них в дальнейшем, когда их длина превысит одну строку
         if (b.getBoots() == null) b.putOnBoots(container.getRandomBoots());
         if (b.getGloves() == null) b.putOnGloves(container.getRandomGloves());
         if (b.getHelmet() == null) b.putOnHelmet(container.getRandomHelmets());
