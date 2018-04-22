@@ -12,6 +12,7 @@ public class Runner {
         Biker biker = new Biker();
         ShelfContainer shelf = new ShelfContainer();
 
+        //вызов static-метода из того же класса выполняется без имени класса, т.е. просто printSortedHelmetShelf и т.д.
         Runner.printSortedHelmetShelf(shelf);
         Runner.printItemsWithinPriceRange(100, 200, shelf);
         Runner.printEntireGearList(shelf);
